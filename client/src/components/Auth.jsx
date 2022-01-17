@@ -15,7 +15,7 @@ const Auth = () => {
   };
 
   return (
-    <div className="auth__from-container">
+    <div className="auth__form-container">
       <div className="auth__form-container_fields">
         <div className="auth__form-container_fields-content">
           <p>{isSignup ? "Sign Up" : "Sign In"}</p>
@@ -76,7 +76,7 @@ const Auth = () => {
                 required
               />
             </div>
-          </form>
+          </form> 
           <div className="auth__form-container_fields-account">
             <p>
               {isSignup ? "Already have an account?" : "Don't have an account?"}
@@ -86,6 +86,9 @@ const Auth = () => {
             </p>
           </div>
         </div>
+      </div>
+      <div className="auth__form-container_image">
+          <img src={signInImage} alt="sign in" />
       </div>
     </div>
   );

@@ -3,15 +3,32 @@ import Cookies from "universal-cookie";
 import Axios from "axios";
 import signInImage from "../assets/signup.jpg";
 
+const initialState = {
+  fullName: "",
+  username: "",
+  password: "",
+  confirmPassword: "",
+  avatarURL: "",
+};
+
 const Auth = () => {
   //first, display the singin
   const [isSignup, setisSignup] = useState(false);
+  const [form, setForm] = useState(initialState);
 
-  const handleChange = () => {};
+  const handleChange = (e) => {
+    // stores the input data into an object,
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(form);
+  };
 
   const switchMode = () => {
-      //change the state depending on previous state from useState (true -> false and vice versa)
-      setisSignup(prevIsSignup => !prevIsSignup);
+    //change the state depending on previous state from useState (true -> false and vice versa)
+    setisSignup((prevIsSignup) => !prevIsSignup);
   };
 
   return (
@@ -19,12 +36,12 @@ const Auth = () => {
       <div className="auth__form-container_fields">
         <div className="auth__form-container_fields-content">
           <p>{isSignup ? "Sign Up" : "Sign In"}</p>
-          <form onSubmit={() => {}}>
+          <form onSubmit={handleSubmit}>
             {isSignup && (
               <div className="auth__form-container_fields-content_input">
                 <label htmlFor="fullName"> Full Name </label>
                 <input
-                  name="FullName"
+                  name="fullName"
                   type="text"
                   placeholder="Full Name"
                   onChange={handleChange}
@@ -76,7 +93,12 @@ const Auth = () => {
                 required
               />
             </div>
-          </form> 
+            <div className="auth__form-container_fields-content_button">
+                <button className="">
+                    {isSignup ? "Sign Up" : "Sign in"}
+                </button>
+            </div>
+          </form>
           <div className="auth__form-container_fields-account">
             <p>
               {isSignup ? "Already have an account?" : "Don't have an account?"}
@@ -88,7 +110,7 @@ const Auth = () => {
         </div>
       </div>
       <div className="auth__form-container_image">
-          <img src={signInImage} alt="sign in" />
+        <img src={signInImage} alt="sign in" />
       </div>
     </div>
   );

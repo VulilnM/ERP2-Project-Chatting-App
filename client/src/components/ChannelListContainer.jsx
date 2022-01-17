@@ -1,5 +1,5 @@
 import React from "react";
-import { Channel, useChatContext } from "stream-chat-react";
+import { ChannelList, useChatContext } from "stream-chat-react";
 import { ChannelSearch, TeamChannelList, TeamChannelPreview } from "./";
 import Cookies from "universal-cookie";
 import HospitalIcon from "../assets/hospital.png";
@@ -22,19 +22,25 @@ const SideBar = () => (
 );
 
 const CompanyHeader = () => (
-    <div className='channel-list__header'>
-        <p className="channel-list__header__text" > Medical Pager </p>
-    </div>
+  <div className="channel-list__header">
+    <p className="channel-list__header__text"> Medical Pager </p>
+  </div>
 );
 
 const ChannelListContainer = () => {
   return (
     <>
-        <SideBar /> 
-        <div className='channel-list__list__wrapper'>
-            <CompanyHeader />
-            <ChannelSearch />
-        </div>
+      <SideBar />
+      <div className="channel-list__list__wrapper">
+        <CompanyHeader />
+        <ChannelSearch />
+        <ChannelList
+          filters={{}}
+          channelRenderFilterFn={() => {}}
+          List={(listProps) => 
+          <TeamChannelList {...listProps} type="team" />}
+        />
+      </div>
     </>
   );
 };

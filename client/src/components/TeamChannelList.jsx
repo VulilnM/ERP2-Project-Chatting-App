@@ -38,15 +38,16 @@ const TeamChannelList = ({
         <p className="team-channel-list__header__title">
           {type == "team" ? "Channels" : "Direct Messages"}
         </p>
+
         <AddChannel
           isCreating={isCreating}
           setIsCreating={setIsCreating}
           setCreateType={setCreateType}
           setIsEditing={setIsEditing}
-          type={type === 'team' ? 'team' : "Messaging" }
+          type={type === "team" ? "team" : "Messaging"}
         />
-        {children}
       </div>
+      {children}
     </div>
   );
 };
